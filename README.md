@@ -96,7 +96,7 @@ GitHub 자동 생성 **Source code** ZIP 대신 위의 설치용 ZIP을 사용�
 
 말풍선과 배경을 빠르게 꾸밀 수 있는 **추천 프리셋 5종**입니다.
 
-[추천 프리셋 5종 ZIP 다운로드](https://github.com/you2-use/convo-viewer/raw/refs/heads/main/simple_preset.zip)
+[추천 프리셋 5종 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.0/simple_preset.zip)
 
 | 프리셋 | 색상과 말풍선 모양 | 파일 |
 | --- | --- | --- |
@@ -185,8 +185,7 @@ convo-viewer/
 ├─ manifest.json
 ├─ extension.js
 ├─ extension.css
-├─ README.md
-└─ simple_preset.zip  # 추천 프리셋 5종
+└─ README.md
 ```
 
-확장 설치용 ZIP에는 `manifest.json`, `extension.js`, `extension.css`, `README.md` 네 파일만 포함합니다. 추천 프리셋 ZIP은 별도로 내려받습니다. API 키·토큰·개인 설정·사용자 사진·로그·개발용 검수 자료는 포함하지 않습니다.
+확장 설치용 ZIP에는 `manifest.json`, `extension.js`, `extension.css`, `README.md` 네 파일만 포함합니다. 추천 프리셋 ZIP은 릴리스의 **Assets**에서 별도로 내려받습니다. API 키·토큰·개인 설정·사용자 사진·로그·개발용 검수 자료는 포함하지 않습니다.
