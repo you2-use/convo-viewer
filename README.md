@@ -25,10 +25,10 @@ Marinara Engine의 **콘보(Conversation) 채팅방마다 말풍선·글꼴·배
 두 방법 모두 Marinara에서 외부 확장을 허용해야 합니다. 이미 외부 확장을 사용하고 있다면 설치 단계로 넘어가세요.
 
 1. 서버에서 외부 확장이 잠겨 있다면 Marinara 설치 폴더의 `.env`에 `ENABLE_EXTERNAL_EXTENSIONS=true`를 설정한 뒤 Marinara를 재시작합니다. 다른 사람이 운영하는 서버라면 운영자에게 요청하세요.
-2. **설정 → 고급 → 위험 구역(Settings → Advanced → Danger Zone)**에서 **타사 확장 가져오기 허용(Allow third-party extension imports)**을 켭니다.
-3. **설정 → 애드온 → 외부 확장(Settings → Addons → External Extensions)**을 엽니다.
+2. **설정 → 고급 → 위험 구역(Settings → Advanced → Danger Zone)** 에서 **타사 확장 가져오기 허용(Allow third-party extension imports)** 을 켭니다.
+3. **설정 → 애드온 → 외부 확장(Settings → Addons → External Extensions)** 을 엽니다.
 
-휴대폰·LAN·원격 주소에서 확장을 관리할 때 관리자 접근을 요구하면, 운영자가 설정한 `ADMIN_SECRET` 값을 **설정 → 고급 → 관리자 접근(Admin Access)**에 입력해야 합니다. 이 확장에 별도 API 키나 GitHub 토큰을 입력할 필요는 없습니다. 언어 팩에 따라 메뉴 일부가 영어로 표시될 수 있습니다.
+휴대폰·LAN·원격 주소에서 확장을 관리할 때 관리자 접근을 요구하면, 운영자가 설정한 `ADMIN_SECRET` 값을 **설정 → 고급 → 관리자 접근(Admin Access)** 에 입력해야 합니다. 이 확장에 별도 API 키나 GitHub 토큰을 입력할 필요는 없습니다. 언어 팩에 따라 메뉴 일부가 영어로 표시될 수 있습니다.
 
 가져온 확장은 꺼진 상태로 저장됩니다. **코드와 요청 권한을 검토하고 실행을 승인해야** 사용할 수 있습니다.
 
@@ -46,17 +46,17 @@ GitHub 확장 관리자가 설치되어 있고 켜져 있을 때 사용할 수 �
 3. **패키지 찾기**를 누릅니다.
 4. 저장소 루트의 **manifest.json**을 선택하고 **내용 확인**을 누릅니다. 릴리스 첨부 ZIP 대신 이 manifest를 선택하는 방법을 기본으로 권장합니다.
 5. 이름이 **콘보모드 뷰어 설정**, 버전이 **v1.3.0**, 실행 방식이 브라우저(client)인지 확인한 뒤 **설치**를 누릅니다.
-6. **검토 후 켜기** 또는 Marinara의 **검토 및 실행(Review and run)**에서 JS·CSS와 **전체 페이지 접근(Full page access)** 권한을 검토합니다. 표시된 코드의 실행을 승인해 확장을 켭니다.
+6. **검토 후 켜기** 또는 Marinara의 **검토 및 실행(Review and run)** 에서 JS·CSS와 **전체 페이지 접근(Full page access)** 권한을 검토합니다. 표시된 코드의 실행을 승인해 확장을 켭니다.
 
 공개 저장소이므로 설치하는 사람은 **GitHub 로그인이나 토큰 없이** 파일을 받을 수 있습니다. 이 저장소 연결로 이후 업데이트도 확인합니다.
 
 ## 설치 방법 2: ZIP 다운로드 후 직접 설치
 
 1. [설치용 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.0/convo-viewer.personal-extension.zip)를 눌러 `convo-viewer.personal-extension.zip`을 받습니다.
-2. **ZIP을 미리 풀지 마세요.** Marinara에서 **설정 → 애드온 → 외부 확장 → 확장 파일 가져오기(Import Extension File)**를 누릅니다.
+2. **ZIP을 미리 풀지 마세요.** Marinara에서 **설정 → 애드온 → 외부 확장 → 확장 파일 가져오기(Import Extension File)** 를 누릅니다.
 3. 다운로드한 ZIP을 선택합니다.
 4. 이름 **콘보모드 뷰어 설정**과 버전 **v1.3.0**을 확인하고 가져오기를 완료합니다.
-5. **검토 및 실행(Review and run)**을 열어 코드와 **전체 페이지 접근** 권한을 확인한 뒤 실행을 승인합니다.
+5. **검토 및 실행(Review and run)** 을 열어 코드와 **전체 페이지 접근** 권한을 확인한 뒤 실행을 승인합니다.
 
 GitHub 확장 관리자가 기본 가져오기 버튼을 숨겼다면 관리자의 **확장 추가 → 파일에서**로 같은 ZIP을 선택할 수 있습니다. ZIP 직접 설치 후 GitHub 업데이트 확인을 사용하려면 관리자에서 이 저장소를 별도로 연결해야 합니다.
 
