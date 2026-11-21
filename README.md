@@ -2,12 +2,12 @@
 
 Marinara Engine의 **콘보(Conversation) 채팅방마다 말풍선·글꼴·배경을 다르게 꾸미는 확장**입니다. 마음에 드는 설정은 프리셋으로 보관하고 다른 콘보방에 적용할 수 있습니다.
 
-- **공개 버전:** v1.3.0
-- **작업 기준:** Marinara Engine v2.5.0에서 제작·작업했습니다. 다른 엔진 버전과 모든 사용자 테마의 호환성을 보장하지 않습니다.
+- **공개 버전:** v1.3.1
+- **작업 기준:** Marinara Engine v2.5.2에서 제작·수정했습니다. 다른 엔진 버전과 모든 사용자 테마의 호환성을 보장하지 않습니다.
 - **설치 방식:** GitHub 확장 관리자 또는 ZIP 직접 설치
 - **확장 이름:** 콘보모드 뷰어 설정
 
-[설치용 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.0/convo-viewer.personal-extension.zip) · [v1.3.0 릴리스](https://github.com/you2-use/convo-viewer/releases/tag/v1.3.0)
+[설치용 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.1/convo-viewer.personal-extension.zip) · [v1.3.1 릴리스](https://github.com/you2-use/convo-viewer/releases/tag/v1.3.1)
 
 ## 주요 기능
 
@@ -45,17 +45,17 @@ GitHub 확장 관리자가 설치되어 있고 켜져 있을 때 사용할 수 �
 
 3. **패키지 찾기**를 누릅니다.
 4. 저장소 루트의 **manifest.json**을 선택하고 **내용 확인**을 누릅니다. 릴리스 첨부 ZIP 대신 이 manifest를 선택하는 방법을 기본으로 권장합니다.
-5. 이름이 **콘보모드 뷰어 설정**, 버전이 **v1.3.0**, 실행 방식이 브라우저(client)인지 확인한 뒤 **설치**를 누릅니다.
+5. 이름이 **콘보모드 뷰어 설정**, 버전이 **v1.3.1**, 실행 방식이 브라우저(client)인지 확인한 뒤 **설치**를 누릅니다.
 6. **검토 후 켜기** 또는 Marinara의 **검토 및 실행(Review and run)** 에서 JS·CSS와 **전체 페이지 접근(Full page access)** 권한을 검토합니다. 표시된 코드의 실행을 승인해 확장을 켭니다.
 
 공개 저장소이므로 설치하는 사람은 **GitHub 로그인이나 토큰 없이** 파일을 받을 수 있습니다. 이 저장소 연결로 이후 업데이트도 확인합니다.
 
 ## 설치 방법 2: ZIP 다운로드 후 직접 설치
 
-1. [설치용 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.0/convo-viewer.personal-extension.zip)를 눌러 `convo-viewer.personal-extension.zip`을 받습니다.
+1. [설치용 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.1/convo-viewer.personal-extension.zip)를 눌러 `convo-viewer.personal-extension.zip`을 받습니다.
 2. **ZIP을 미리 풀지 마세요.** Marinara에서 **설정 → 애드온 → 외부 확장 → 확장 파일 가져오기(Import Extension File)** 를 누릅니다.
 3. 다운로드한 ZIP을 선택합니다.
-4. 이름 **콘보모드 뷰어 설정**과 버전 **v1.3.0**을 확인하고 가져오기를 완료합니다.
+4. 이름 **콘보모드 뷰어 설정**과 버전 **v1.3.1**을 확인하고 가져오기를 완료합니다.
 5. **검토 및 실행(Review and run)** 을 열어 코드와 **전체 페이지 접근** 권한을 확인한 뒤 실행을 승인합니다.
 
 GitHub 확장 관리자가 기본 가져오기 버튼을 숨겼다면 관리자의 **확장 추가 → 파일에서**로 같은 ZIP을 선택할 수 있습니다. ZIP 직접 설치 후 GitHub 업데이트 확인을 사용하려면 관리자에서 이 저장소를 별도로 연결해야 합니다.
@@ -96,7 +96,7 @@ GitHub 자동 생성 **Source code** ZIP 대신 위의 설치용 ZIP을 사용�
 
 말풍선과 배경을 빠르게 꾸밀 수 있는 **추천 프리셋 5종**입니다.
 
-[추천 프리셋 5종 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.0/simple_preset.zip)
+[추천 프리셋 5종 ZIP 다운로드](https://github.com/you2-use/convo-viewer/releases/download/v1.3.1/simple_preset.zip)
 
 | 프리셋 | 색상과 말풍선 모양 | 파일 |
 | --- | --- | --- |
@@ -152,6 +152,12 @@ GitHub 확장 관리자로 설치한 경우 해당 확장의 **업데이트 확�
 업데이트된 확장은 꺼진 상태로 저장됩니다. **새 JS·CSS·권한을 확인하고 다시 실행을 승인**하세요. 화면 상태가 남아 있으면 새로고침하세요. 기존 방 설정과 프리셋을 사용하도록 저장 키·형식을 유지합니다.
 
 관리자는 기본 브랜치의 실제 JS·CSS·권한 변경으로 코드 업데이트를 판단합니다. 버전 숫자나 README만 바뀐 경우 코드 업데이트로 표시되지 않을 수 있습니다. 저장소의 `manifest.json` 경로와 릴리스 ZIP 파일명 `convo-viewer.personal-extension.zip`은 앞으로도 유지하는 배포 경로입니다.
+
+### v1.3.1 — 콘보 메시지 수정 시 말풍선 중복 오류 수정
+
+- **줄바꿈마다 분리** 기능이 켜진 상태에서 콘보 메시지를 수정(저장·취소)하거나 숨김 접기/펼치기·레이아웃 전환을 할 때, 기존 분리 말풍선이 남아 새 말풍선과 겹쳐 중복 표시되던 오류를 수정했습니다.
+- React가 원본 말풍선 요소를 교체하거나 재사용할 때 고아가 된 분리 표시와 오래된 속성을 즉시 정리하고, 그룹 채팅(`ConversationMessage.Grouped`) 스트리밍 상태 감지도 보강했습니다.
+- 확장 이름·runtime·권한·저장 키·데이터 형식과 기존 CSS는 그대로 유지했습니다.
 
 ## 자주 생기는 문제
 

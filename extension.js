@@ -339,7 +339,7 @@ let structureTargets = new Map();
 const visibilityStyle = document.createElement("div").style;
 let appliedSettingsKey = null;
 let stateSaveQueue = Promise.resolve();
-const splitSignatures = new WeakMap();
+const splitEntries = new WeakMap();
 let splitFrame = 0;
 let pendingSplitScopes = new Set();
 
@@ -586,7 +586,7 @@ function borderValue(mode, color, style, width) {
 }
 
 function isStreamingMessage(source) {
-  const message = source.closest(".mari-message-assistant");
+  const message = source.closest(MESSAGE_CONTAINER_SELECTOR);
   return Boolean(message?.className.includes("bg-[var(--secondary)]/20"));
 }
 
@@ -630,12 +630,15 @@ function clearBubbleSplits(root) {
   const displays = root?.querySelectorAll(`.${SPLIT_DISPLAY_CLASS}`) ?? [];
   const sources = root?.querySelectorAll(`[${SPLIT_SOURCE_ATTR}]`) ?? [];
   displays.forEach((node) => node.remove());
-  sources.forEach((node) => node.removeAttribute(SPLIT_SOURCE_ATTR));
+  sources.forEach((node) => {
+    node.removeAttribute(SPLIT_SOURCE_ATTR);
+    splitEntries.delete(node);
+  });
   return displays.length > 0 || sources.length > 0;
 }
 
 function addBubbleSplit(source, lines = splitLines(source)) {
-  if (!lines || source.nextElementSibling?.classList.contains(SPLIT_DISPLAY_CLASS)) return false;
+  if (!lines || source.nextElementSibling?.classList.contains(SPLIT_DISPLAY_CLASS)) return null;
   const display = create("div", {
     className: SPLIT_DISPLAY_CLASS,
     attrs: { "aria-hidden": "true", "data-mari-convo-viewer-split-role": messageRoleFor(source) },
@@ -651,22 +654,62 @@ function addBubbleSplit(source, lines = splitLines(source)) {
   }
   source.setAttribute(SPLIT_SOURCE_ATTR, "true");
   source.after(display);
-  return true;
+  return display;
 }
 
 function syncBubbleSplits(root, enabled) {
   if (!enabled) return clearBubbleSplits(root);
   let changed = false;
+  const validDisplays = new Set();
+  const validSources = new Set();
+  const toSplit = [];
+
   for (const source of root.querySelectorAll('.mari-message-bubble:not(.mari-convo-viewer-split-bubble)')) {
-    const display = source.nextElementSibling?.classList.contains(SPLIT_DISPLAY_CLASS) ? source.nextElementSibling : null;
+    const entry = splitEntries.get(source);
+    const display = entry?.display && source.nextElementSibling === entry.display ? entry.display : null;
     const lines = canSplitBubble(source) ? splitLines(source) : null;
     const signature = lines ? JSON.stringify([lines, source.className, source.style.cssText]) : null;
-    if (signature && display && splitSignatures.get(source) === signature) continue;
-    if (display) { display.remove(); changed = true; }
-    if (source.hasAttribute(SPLIT_SOURCE_ATTR)) { source.removeAttribute(SPLIT_SOURCE_ATTR); changed = true; }
-    splitSignatures.delete(source);
-    if (signature) { changed = addBubbleSplit(source, lines) || changed; splitSignatures.set(source, signature); }
+    if (signature && display && entry.signature === signature && source.hasAttribute(SPLIT_SOURCE_ATTR)) {
+      validDisplays.add(display);
+      validSources.add(source);
+      continue;
+    }
+    if (source.hasAttribute(SPLIT_SOURCE_ATTR)) {
+      source.removeAttribute(SPLIT_SOURCE_ATTR);
+      changed = true;
+    }
+    splitEntries.delete(source);
+    if (signature) toSplit.push({ source, lines, signature });
   }
+
+  // Remove orphaned split displays left behind when React unmounts or replaces
+  // a message bubble (e.g., entering/exiting edit mode or collapsing a hidden
+  // message), as well as any stale displays replaced in this pass.
+  for (const display of root.querySelectorAll(`.${SPLIT_DISPLAY_CLASS}`)) {
+    if (!validDisplays.has(display)) {
+      display.remove();
+      changed = true;
+    }
+  }
+
+  // Remove stale split-source markers if React reused a bubble element for a
+  // non-bubble node (e.g., switching between bubble and classic/grouped layouts).
+  for (const source of root.querySelectorAll(`[${SPLIT_SOURCE_ATTR}]`)) {
+    if (!validSources.has(source)) {
+      source.removeAttribute(SPLIT_SOURCE_ATTR);
+      splitEntries.delete(source);
+      changed = true;
+    }
+  }
+
+  for (const { source, lines, signature } of toSplit) {
+    const display = addBubbleSplit(source, lines);
+    if (display) {
+      changed = true;
+      splitEntries.set(source, { signature, display });
+    }
+  }
+
   return changed;
 }
 
@@ -1932,7 +1975,7 @@ function scheduleSplits(records) {
   for (const record of records) {
     const target = record.target instanceof Element ? record.target : record.target.parentElement;
     if (isExtensionOwnedNode(target)) continue;
-    if (record.type === 'attributes' && !target?.matches(`${MESSAGE_CONTAINER_SELECTOR}, .mari-message-bubble`)) continue;
+    if (record.type === 'attributes' && !target?.matches(`${MESSAGE_CONTAINER_SELECTOR}, .mari-message-bubble, [${SPLIT_SOURCE_ATTR}]`)) continue;
     if (record.type === 'childList' && [...record.addedNodes, ...record.removedNodes].every(isExtensionOwnedNode)) continue;
     if (target?.closest(MESSAGE_CONTAINER_SELECTOR)) queueSplitScope(target);
     for (const node of record.addedNodes) if (node instanceof Element) queueSplitScope(node);
